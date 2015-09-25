@@ -6,3 +6,5 @@ Simple, opinionated pagination for React.
 [![GitHub release](https://img.shields.io/github/release/briansokol/react-paginatify.svg?style=flat-square)](https://github.com/briansokol/react-paginatify)
 [![npm](https://img.shields.io/npm/v/react-paginatify.svg?style=flat-square)](https://www.npmjs.com/package/react-paginatify)
 [![npm](https://img.shields.io/npm/l/react-paginatify.svg?style=flat-square)](https://www.npmjs.com/package/react-paginatify)
+
+Do not use this module. It is not ready.
