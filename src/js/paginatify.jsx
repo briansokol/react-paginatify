@@ -25,61 +25,88 @@ class Paginatify extends React.Component {
   }
 
   render() {
-    let pageNumbers = this.getVisiblePageNumbers();
-
     return (
       <div className="paginatify">
+
         {
-          this.state.totalPages > 1 ?
+          this.state.pages > 1 ?
             this.getPreviousLink()
             : null
         }
+
+        {this.getPageLinks()}
+
         {
-          pageNumbers.map(i => {
-            return this.getLink(i);
-          })
-        }
-        {
-          this.state.totalPages > 1 ?
+          this.state.pages > 1 ?
             this.getNextLink()
             : null
         }
+
       </div>
-    )
+    );
 
   }
 
-  getVisiblePageNumbers() {
-    if (this.props.totalPages <= 0) {
-      return [];
-    } else if (this.props.totalPages === 1) {
-      return [1];
-    } else if (this.props.totalPages <= 7) {
-      return this.range(1, this.props.totalPages);
-    } else {
-      var links = [];
-      if (this.state.page <= 4) {
-        links = this.range(1, this.state.page);
-      } else {
-        links = [1, '...', this.state.page - 2, this.state.page - 1, this.state.page];
+  getPageLinks() {
+    let output = [];
+
+    if (this.props.pages < 1) {
+      return output;
+    }
+
+    // if Total less than 2(Inner + Outer) + 5 AND NOT always truncate
+    if (this.props.pages < 2 * (this.props.innerPadding + this.props.outerPadding) + 5 && !this.props.alwaysTruncate) {
+      // output 1 to Total
+      for (let i = 1; i <= this.props.pages; i++) {
+        output.push(this.getLinkToPage(i));
       }
-      if (this.state.page < this.props.totalPages) {
-        if (this.state.page >= this.props.totalPages - 3) {
-          links.push(...this.range(this.state.page + 1, this.props.totalPages));
-        } else {
-          if (this.state.page + 1 < this.props.totalPages) {
-            links.push(this.state.page + 1);
-          }
-          if (this.state.page + 2 < this.props.totalPages) {
-            links.push(this.state.page + 2);
-          }
-          links.push('...');
-          links.push(this.props.totalPages);
-        }
+      return output;
+    }
+
+    // if Page > Inner + Outer + 2
+    if (this.props.page > this.props.innerPadding + this.props.outerPadding + 2) {
+      // output 1 to Outer
+      for (let i = 1; i <= this.props.outerPadding; i++) {
+        output.push(this.getLinkToPage(i));
+      }
+      // output ...
+      output.push(this.getTruncator());
+      // output Page - Inner to Page - 1
+      for (let i = this.props.page - this.props.innerPadding; i <= this.props.page - 1; i++) {
+        output.push(this.getLinkToPage(i));
+      }
+    } else {
+      // output 1 to Page - 1
+      for (let i = 1; i <= this.props.page - 1; i++) {
+        output.push(this.getLinkToPage(i));
       }
     }
-    return links;
+
+    // output page
+    output.push(this.getLinkToPage(this.props.page));
+
+    // if Page < Total - (Inner + Outer + 1)
+    if (this.props.page < this.props.pages - this.props.innerPadding - this.props.outerPadding - 1) {
+      // output Page + 1 to Page + Inner
+      for (let i = this.props.page + 1; i <= this.props.page + this.props.innerPadding; i++) {
+        output.push(this.getLinkToPage(i));
+      }
+      // output ...
+      output.push(this.getTruncator());
+      // output Total - (Outer - 1) to Total
+      for (let i = this.props.pages - (this.props.outerPadding - 1); i <= this.props.pages; i++) {
+        output.push(this.getLinkToPage(i));
+      }
+    } else {
+      // output Page + 1 to Total
+      for (let i = this.props.page + 1; i <= this.props.pages; i++) {
+        output.push(this.getLinkToPage(i));
+      }
+    }
+
+    return output;
   }
+
 
   getPreviousLink() {
     return <a href="#" key="previous"
@@ -90,28 +117,27 @@ class Paginatify extends React.Component {
 
   getNextLink() {
     return <a href="#" key="next"
-              onClick={this.state.page !== this.props.totalPages ? this.setPage.bind(this, this.state.page + 1) : noop}>
+              onClick={this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1) : noop}>
       {this.props.nextLabel}
     </a>;
   }
 
-  getLink(toPage) {
-    return <a href="#" key={toPage} onClick={toPage !== this.state.page ? this.setPage.bind(this, toPage) : noop}>
-      {toPage}
-    </a>;
+  getLinkToPage(toPage) {
+    return toPage;
+
+    //return <a href="#" key={toPage} onClick={toPage !== this.state.page ? this.setPage.bind(this, toPage) : noop}>
+    //  {toPage}
+    //</a>;
   }
 
-  range(start, end) {
-    if (start > end) {
-      [start, end] = [end, start];
-    }
-    return Array(end - start + 1).fill(0).map((v, i) => i + start);
+  getTruncator() {
+    return '…';
   }
 }
 
 Paginatify.propTypes = {
   page: React.PropTypes.number.required,
-  totalPages: React.PropTypes.number.required,
+  pages: React.PropTypes.number.required,
   onChange: React.PropTypes.func,
   nextLabel: React.PropTypes.string,
   prevLabel: React.PropTypes.string
@@ -119,7 +145,10 @@ Paginatify.propTypes = {
 
 Paginatify.defaultProps = {
   page: 1,
-  totalPages: 1,
+  pages: 1,
+  alwaysTruncate: true,
+  innerPadding: 1,
+  outerPadding: 1,
   onChange: noop,
   nextLabel: '>',
   prevLabel: '<'

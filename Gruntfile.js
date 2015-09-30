@@ -1,10 +1,10 @@
 module.exports = function (grunt) {
   'use strict';
 
-  let path = require('path');
+  var path = require('path');
   require('load-grunt-tasks')(grunt);
 
-  let pathTo       = {};
+  var pathTo       = {};
   pathTo.dist      = path.join(__dirname, 'dist');
   pathTo.src       = path.join(__dirname, 'src');
   pathTo.cssSrc    = path.join(pathTo.dist, 'css', '*');
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
   pathTo.jsTest    = path.join(pathTo.src, 'test', '**', '*.test.jsx');
   pathTo.jsDist    = path.join(pathTo.dist, 'js');
 
-  let tasks = require('load-grunt-configs')(grunt, {
+  var tasks = require('load-grunt-configs')(grunt, {
     config: {
       src: ['tasks/*.js']
     },

@@ -1,7 +1,7 @@
 module.exports = function () {
   'use strict';
 
-  let webpack = require("webpack");
+  var webpack = require("webpack");
 
   return {
     options: {
