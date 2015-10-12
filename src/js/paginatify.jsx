@@ -1,7 +1,6 @@
 import React from 'react';
-import cx from 'classnames';
 
-let noop = function () {
+let noop = function() {
   return undefined;
 };
 
@@ -13,15 +12,12 @@ class Paginatify extends React.Component {
     this.state = {page: props.page};
   }
 
-  setPage(newPage, e) {
-    console.log(newPage, e);
-
-    e.preventDefault();
-    let oldPage = this.state.page;
-    this.setState({
-      page: newPage
-    });
-    this.props.onChange(newPage, oldPage);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.page !== this.state.page) {
+      this.setState({
+        page: nextProps.page
+      });
+    }
   }
 
   render() {
@@ -47,8 +43,21 @@ class Paginatify extends React.Component {
 
   }
 
+  setPage(newPage, button, e) {
+    console.log(newPage, e);
+
+    e.preventDefault();
+    let oldPage = this.state.page;
+    this.setState({
+      page: newPage
+    });
+    this.props.onChange(newPage, oldPage, button);
+  }
+
   getPageLinks() {
     let output = [];
+
+    console.log('props', this.props);
 
     if (this.props.pages < 1) {
       return output;
@@ -109,25 +118,34 @@ class Paginatify extends React.Component {
 
 
   getPreviousLink() {
-    return <a href="#" key="previous"
-              onClick={this.state.page !== 1 ? this.this.setPage.bind(this, this.state.page - 1) : noop}>
+    return <a href="#"
+              key="previous"
+              className={toPage !== this.state.page ? 'paginatify__previous' : 'paginatify__previous--disabled'}
+              onClick={this.state.page !== 1 ? this.this.setPage.bind(this, this.state.page - 1, 'previous') : noop}>
       {this.props.prevLabel}
     </a>;
   }
 
   getNextLink() {
-    return <a href="#" key="next"
-              onClick={this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1) : noop}>
+    return <a href="#"
+              key="next"
+              className={this.state.page !== 1 ? 'paginatify__next' : 'paginatify__next--disabled'}
+              onClick={this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1, 'next') : noop}>
       {this.props.nextLabel}
     </a>;
   }
 
   getLinkToPage(toPage) {
-    return toPage;
-
-    //return <a href="#" key={toPage} onClick={toPage !== this.state.page ? this.setPage.bind(this, toPage) : noop}>
-    //  {toPage}
-    //</a>;
+    if (this.props.rawOutput) {
+      return toPage;
+    } else {
+      return <a href="#"
+                key={toPage}
+                className={this.state.page !== this.props.pages ? 'paginatify__link' : 'paginatify__link--current'}
+                onClick={toPage !== this.state.page ? this.setPage.bind(this, toPage, 'page') : noop}>
+        {toPage}
+      </a>;
+    }
   }
 
   getTruncator() {
@@ -140,7 +158,8 @@ Paginatify.propTypes = {
   pages: React.PropTypes.number.required,
   onChange: React.PropTypes.func,
   nextLabel: React.PropTypes.string,
-  prevLabel: React.PropTypes.string
+  prevLabel: React.PropTypes.string,
+  rawOutput: React.PropTypes.bool
 };
 
 Paginatify.defaultProps = {
@@ -151,7 +170,8 @@ Paginatify.defaultProps = {
   outerPadding: 1,
   onChange: noop,
   nextLabel: '>',
-  prevLabel: '<'
+  prevLabel: '<',
+  rawOutput: false
 };
 
 export default Paginatify;
