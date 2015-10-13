@@ -1,0 +1,16 @@
+{
+  "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+  "unmockedModulePathPatterns": [
+    "react"
+  ],
+  "moduleFileExtensions": ["js", "jsx"],
+  "testDirectoryName": "test",
+  "testFileExtensions": [
+    "test.jsx"
+  ],
+  "collectCoverage": true,
+  "collectCoverageOnlyFrom": {
+    "<rootDir>/src/js/paginatify.js": true
+  },
+  "verbose": true
+}
