@@ -57,8 +57,6 @@ class Paginatify extends React.Component {
   getPageLinks() {
     let output = [];
 
-    console.log('props', this.props);
-
     if (this.props.pages < 1) {
       return output;
     }
@@ -120,7 +118,7 @@ class Paginatify extends React.Component {
   getPreviousLink() {
     return <a href="#"
               key="previous"
-              className={toPage !== this.state.page ? 'paginatify__previous' : 'paginatify__previous--disabled'}
+              className={this.state.page !== this.props.pages ? 'paginatify__previous' : 'paginatify__previous--disabled'}
               onClick={this.state.page !== 1 ? this.this.setPage.bind(this, this.state.page - 1, 'previous') : noop}>
       {this.props.prevLabel}
     </a>;
@@ -149,7 +147,7 @@ class Paginatify extends React.Component {
   }
 
   getTruncator() {
-    return '…';
+    return this.props.truncateChar;
   }
 }
 
@@ -157,6 +155,10 @@ Paginatify.propTypes = {
   page: React.PropTypes.number.required,
   pages: React.PropTypes.number.required,
   onChange: React.PropTypes.func,
+  alwaysTruncate: React.PropTypes.bool,
+  truncateChar: React.PropTypes.string,
+  innerPadding: React.PropTypes.number,
+  outerPadding: React.PropTypes.number,
   nextLabel: React.PropTypes.string,
   prevLabel: React.PropTypes.string,
   rawOutput: React.PropTypes.bool
@@ -166,6 +168,7 @@ Paginatify.defaultProps = {
   page: 1,
   pages: 1,
   alwaysTruncate: true,
+  truncateChar: '…',
   innerPadding: 1,
   outerPadding: 1,
   onChange: noop,
