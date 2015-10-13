@@ -152,8 +152,8 @@ class Paginatify extends React.Component {
 }
 
 Paginatify.propTypes = {
-  page: React.PropTypes.number.required,
-  pages: React.PropTypes.number.required,
+  page: React.PropTypes.number.isRequired,
+  pages: React.PropTypes.number.isRequired,
   onChange: React.PropTypes.func,
   alwaysTruncate: React.PropTypes.bool,
   truncateChar: React.PropTypes.string,
