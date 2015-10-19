@@ -1,8 +1,8 @@
 {
   "name": "react-paginatify",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Simple, opinionated pagination for React.",
-  "main": "dist/react-paginatify.js",
+  "main": "dist/js/react-paginatify.js",
   "scripts": {
     "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
@@ -22,8 +22,8 @@
     "url": "https://github.com/briansokol/react-paginatify/issues"
   },
   "homepage": "https://github.com/briansokol/react-paginatify#readme",
-  "dependencies": {
-    "react": "^0.14.0"
+  "peerDependencies": {
+    "react": ">=0.13.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
@@ -49,6 +49,7 @@
     "load-grunt-tasks": "^3.3.0",
     "path": "^0.12.7",
     "pixrem": "^3.0.0",
+    "react": ">=0.13.0",
     "react-addons-test-utils": "^0.14.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"

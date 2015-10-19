@@ -33,7 +33,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', ['clean:dist', 'css:serve', 'eslint', 'webpack:serve', 'watch']);
 
-  grunt.registerTask('build', ['clean:dist', 'css:build', 'webpack:build']);
+  grunt.registerTask('build', ['clean:dist'/*, 'css:build'*/, 'webpack']);
 
   grunt.registerTask('default', ['serve']);
 };

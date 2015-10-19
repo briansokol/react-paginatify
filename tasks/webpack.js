@@ -9,8 +9,19 @@ module.exports = function () {
       entry: '<%= pathTo.jsEntry %>',
       output: {
         path: '<%= pathTo.jsDist %>',
-        filename: '<%= pkg.name %>.js'
+        library: 'react-paginatify',
+        libraryTarget: 'umd'
       },
+      externals: [
+        {
+          react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+          }
+        }
+      ],
       module: {
         loaders: [
           {
@@ -25,6 +36,9 @@ module.exports = function () {
       },
     },
     build: {
+      output: {
+        filename: '<%= pkg.name %>.min.js'
+      },
       plugins: [
         new webpack.DefinePlugin({
           'process.env': {
@@ -36,6 +50,9 @@ module.exports = function () {
       ]
     },
     serve: {
+      output: {
+        filename: '<%= pkg.name %>.js'
+      },
       devtool: 'inline-source-map',
       debug: true
     }
