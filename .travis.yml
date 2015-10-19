@@ -4,7 +4,7 @@ node_js:
 before_install:
   - npm install -g npm@latest
   - npm --version
-  - npm install -g grunt grunt-cli grunt-jest jest-cli node-sass
+  - npm install -g grunt-cli grunt-jest jest-cli node-sass
 install:
   - npm install
 script:
