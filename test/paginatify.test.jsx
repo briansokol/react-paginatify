@@ -2,18 +2,22 @@ jest.dontMock('../src/js/paginatify.jsx');
 
 describe('paginatify', function() {
 
-  var TestUtils  = require('react-addons-test-utils'),
-      ReactDOM   = require('react-dom'),
-      React      = require('react'),
-      Paginatify = require('../src/js/paginatify');
+  describe('in general', function() {
 
-  var paginatify = TestUtils.renderIntoDocument(
-    <Paginatify page={1} pages={5} />
-  );
+    var TestUtils  = require('react-addons-test-utils'),
+        ReactDOM   = require('react-dom'),
+        React      = require('react'),
+        Paginatify = require('../src/js/paginatify');
 
-  it('should render pagination', function() {
-    var component = TestUtils.findRenderedDOMComponentWithClass(paginatify, 'paginatify');
-    expect(ReactDOM.findDOMNode(component)).not.toBeNull();
+    var paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={5} />
+    );
+
+    it('should render a paginatify component', function() {
+      var component = TestUtils.findRenderedDOMComponentWithClass(paginatify, 'paginatify');
+      expect(ReactDOM.findDOMNode(component)).not.toBeNull();
+    });
+
   });
 
   //describe('getPageLinks with innerPadding: 1, outerPadding: 1', function () {
