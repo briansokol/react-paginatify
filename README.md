@@ -1,7 +1,7 @@
 # react-paginatify
 Simple, truncatable pagination for React.
 
-[![Travis](https://img.shields.io/travis/bsokol/react-paginatify.svg?style=flat-square)](https://travis-ci.org/)
+[![Travis](https://img.shields.io/travis/bsokol/react-paginatify.svg?https://travis-ci.org/briansokol/react-paginatify.svg?branch=master&style=flat-square)](https://travis-ci.org/briansokol/react-paginatify)
 [![Codecov](https://img.shields.io/codecov/c/github/briansokol/react-paginatify.svg?style=flat-square)](https://github.com/briansokol/react-paginatify)
 [![npm](https://img.shields.io/npm/dt/react-paginatify.svg)](https://www.npmjs.com/package/react-paginatify)
 [![npm](https://img.shields.io/npm/v/react-paginatify.svg?style=flat-square)](https://www.npmjs.com/package/react-paginatify)
