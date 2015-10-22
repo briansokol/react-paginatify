@@ -1,13 +1,13 @@
 jest.dontMock('../src/js/paginatify.jsx');
 
+var TestUtils  = require('react-addons-test-utils'),
+    ReactDOM   = require('react-dom'),
+    React      = require('react'),
+    Paginatify = require('../src/js/paginatify');
+
 describe('paginatify', function() {
 
   describe('in general', function() {
-
-    var TestUtils  = require('react-addons-test-utils'),
-        ReactDOM   = require('react-dom'),
-        React      = require('react'),
-        Paginatify = require('../src/js/paginatify');
 
     var paginatify = TestUtils.renderIntoDocument(
       <Paginatify page={1} pages={5} />
@@ -16,6 +16,34 @@ describe('paginatify', function() {
     it('should render a paginatify component', function() {
       var component = TestUtils.findRenderedDOMComponentWithClass(paginatify, 'paginatify');
       expect(ReactDOM.findDOMNode(component)).not.toBeNull();
+    });
+
+    it('should should contain at least one page link', function() {
+      var links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
+      expect(links.length).toBeGreaterThan(0);
+    });
+
+  });
+
+  describe('with one page', function() {
+
+    var paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={1} />
+    );
+
+    it('should should contain only one page link', function() {
+      var links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
+      expect(links.length).toBe(1);
+    });
+
+    it('should should contain no previous link', function() {
+      var links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--previous');
+      expect(links.length).toBe(0);
+    });
+
+    it('should should contain no next link', function() {
+      var links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
+      expect(links.length).toBe(0);
     });
 
   });
