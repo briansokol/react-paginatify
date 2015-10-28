@@ -121,21 +121,10 @@ describe('Paginatify', function() {
             output.push(links[idx].textContent);
             expect(links[idx].textContent).toEqual(value);
           });
-          console.log(JSON.stringify(test.props), JSON.stringify(test.expect), JSON.stringify(output));
+          //console.log(JSON.stringify(test.props), JSON.stringify(test.expect), JSON.stringify(output));
         });
       });
     });
   });
-
-  //let options = {
-  //  page: 9,
-  //  pages: 10,
-  //  alwaysTruncate: false,
-  //  innerPadding: 1,
-  //  outerPadding: 2
-  //};
-  //let paginatify = new Paginatify(options);
-  //console.log(options);
-  //console.log(paginatify.getPageLinks());
 
 });

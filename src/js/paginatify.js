@@ -115,7 +115,6 @@ class Paginatify extends React.Component {
 
 
   getPreviousLink() {
-    console.log('cx', cx('paginatify__link', 'paginatify__link--previous'));
     return <a href="#"
               key="P"
               className={cx('paginatify__link', 'paginatify__link--previous', {'paginatify__link--disabled': this.state.page === 1})}
