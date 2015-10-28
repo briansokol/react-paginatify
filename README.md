@@ -1,5 +1,5 @@
 # react-paginatify
-Simple, truncatable pagination for React.
+Simple, configurable, truncatable pagination for React.
 
 [![Travis](https://img.shields.io/travis/bsokol/react-paginatify.svg?https://travis-ci.org/briansokol/react-paginatify.svg?branch=master&style=flat-square)](https://travis-ci.org/briansokol/react-paginatify)
 [![Codecov](https://img.shields.io/codecov/c/github/briansokol/react-paginatify/master.svg?style=flat-square)](https://codecov.io/github/briansokol/react-paginatify?branch=master)
