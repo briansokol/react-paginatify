@@ -1,7 +1,7 @@
 {
   "name": "react-paginatify",
   "version": "1.0.0-beta.1",
-  "description": "Simple, configurable pagination for React.",
+  "description": "Simple, configurable, truncatable pagination for React.",
   "main": "lib/js/react-paginatify.js",
   "scripts": {
     "report-coverage": "cat ./coverage/coverage-final.json | ./node_modules/codecov.io/bin/codecov.io.js",
