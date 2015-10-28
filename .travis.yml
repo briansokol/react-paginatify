@@ -12,6 +12,5 @@ before_install:
 install:
   - npm install
 script:
-  - npm start
   - npm test
   - npm run report-coverage

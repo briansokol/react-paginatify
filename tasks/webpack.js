@@ -26,14 +26,14 @@ module.exports = function () {
         loaders: [
           {
             loader: 'babel-loader',
-            test: /\.jsx$/,
+            test: /\.js$/,
             include: [
               '<%= pathTo.src %>'
             ],
             exclude: /(node_modules|bower_components)/
           }
         ]
-      },
+      }
     },
     build: {
       output: {
@@ -45,15 +45,21 @@ module.exports = function () {
             'NODE_ENV': JSON.stringify('production')
           }
         }),
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            screw_ie8: true,
+            warnings: false
+          }
+        })
       ]
     },
     serve: {
       output: {
         filename: '<%= pkg.name %>.js'
       },
-      devtool: 'inline-source-map',
+      devtool: 'sourcemap',
       debug: true
     }
   };

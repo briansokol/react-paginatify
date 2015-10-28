@@ -5,8 +5,8 @@ module.exports = function () {
     dist: {
       src: ['<%= pathTo.dist %>']
     },
-    sourcemaps: {
-      src: ['<%= pathTo.cssDist %>/*.css.map']
+    lib: {
+      src: ['<%= pathTo.lib %>']
     }
   };
 };
