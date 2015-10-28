@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "node"
+branches:
+  only:
+    - master
+    - develop
+before_install:
+  - npm install -g npm@latest
+  - npm --version
+  - npm install -g grunt-cli grunt-jest jest-cli node-sass
+install:
+  - npm install
+script:
+  - npm test
+  - npm run report-coverage
