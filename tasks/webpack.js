@@ -30,7 +30,10 @@ module.exports = function () {
             include: [
               '<%= pathTo.src %>'
             ],
-            exclude: /(node_modules|bower_components)/
+            exclude: /(node_modules)/,
+            query: {
+              presets: ['es2015', 'react']
+            }
           }
         ]
       }
@@ -48,10 +51,10 @@ module.exports = function () {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
-          compressor: {
-            screw_ie8: true,
+          compress: {
             warnings: false
-          }
+          },
+          screwIE8: true
         })
       ]
     },
@@ -59,7 +62,7 @@ module.exports = function () {
       output: {
         filename: '<%= pkg.name %>.js'
       },
-      devtool: 'sourcemap',
+      devtool: 'source-map',
       debug: true
     }
   };

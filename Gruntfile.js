@@ -33,11 +33,11 @@ module.exports = function (grunt) {
 
   grunt.initConfig(tasks);
 
-  grunt.registerTask('serve', ['clean', /* 'postcss:serve',*/ 'eslint', 'babel', 'webpack:serve', 'watch']);
+  grunt.registerTask('serve', [/*'clean',  'postcss:serve',*/ 'eslint', 'babel', 'webpack:serve', 'watch']);
 
-  grunt.registerTask('build', ['clean', /* 'postcss',*/ 'babel', 'webpack']);
+  grunt.registerTask('build', [/*'clean',  'postcss',*/ 'babel', 'webpack']);
 
-  grunt.registerTask('publish', ['eslint', 'clean', /* 'postcss',*/ 'babel', 'webpack']);
+  grunt.registerTask('publish', ['eslint', /*'clean',  'postcss',*/ 'babel', 'webpack']);
 
   grunt.registerTask('default', ['serve']);
 };
