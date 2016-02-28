@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-const Paginatify = require('../src/js/paginatify');
+const Paginatify = require('../src/js/paginatify').default;
 
 describe('Paginatify', function() {
 
