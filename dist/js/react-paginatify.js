@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react"], factory);
+		define("Paginatify", ["react"], factory);
 	else if(typeof exports === 'object')
-		exports["react-paginatify"] = factory(require("react"));
+		exports["Paginatify"] = factory(require("react"));
 	else
-		root["react-paginatify"] = factory(root["React"]);
+		root["Paginatify"] = factory(root["React"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -55,10 +55,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -261,7 +257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  truncateNever: false
 	};
 	
-	exports.default = Paginatify;
+	module.exports = Paginatify;
 
 /***/ },
 /* 1 */
