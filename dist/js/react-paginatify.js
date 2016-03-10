@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react"], factory);
+		define("Paginatify", ["react"], factory);
 	else if(typeof exports === 'object')
-		exports["react-paginatify"] = factory(require("react"));
+		exports["Paginatify"] = factory(require("react"));
 	else
-		root["react-paginatify"] = factory(root["React"]);
+		root["Paginatify"] = factory(root["React"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
