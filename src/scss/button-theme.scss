@@ -1,0 +1,57 @@
+/* Button styles based on http://codepen.io/LimpingLlama/pen/JXYZRo */
+
+$inactive-bg-color: #eeeeee;
+$inactive-color: black;
+$current-bg-color: #f012be;
+$current-color: white;
+$disabled-bg-color: #eeeeee;
+$disabled-color: #aaaaaa;
+$shadow-color: #bbbbbb;
+
+.paginatify {
+  margin: 1rem;
+}
+
+.paginatify__link {
+  transition: all 0.2s;
+  display: inline-block;
+  position: relative;
+  top: 0;
+  background: $inactive-bg-color;
+  color: $inactive-color;
+  padding: 0.5rem 1rem;
+  margin: 0.4rem 0.2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.4rem 0 0 darken($inactive-bg-color, 5%),
+  0 0 0.5rem 0 $shadow-color;
+  text-decoration: none;
+
+  &:active {
+    top: 0.3rem;
+    box-shadow: 0 0.1rem 0 0 darken($inactive-bg-color, 5%)
+  }
+}
+
+.paginatify__truncation {
+  color: #666666;
+  font-weight: bold;
+  margin: 0.4rem 0.4rem;
+}
+
+.paginatify__link--current {
+  background: $current-bg-color;
+  color: $current-color;
+  box-shadow: 0 0.4rem 0 0 darken($current-bg-color, 5%),
+  0 0 0.5rem 0 $shadow-color;
+
+  &:active {
+    box-shadow: 0 0.1rem 0 0 darken($current-bg-color, 5%)
+  }
+}
+
+.paginatify__link--disabled {
+  top: 0.3rem;
+  color: $disabled-color;
+  background: $disabled-bg-color;
+  box-shadow: 0 0.1rem 0 0 darken($disabled-bg-color, 5%)
+}

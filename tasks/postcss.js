@@ -1,25 +1,25 @@
 module.exports = function () {
   'use strict';
 
+  var browsers = [
+    "Android 2.3",
+    "Android >= 4",
+    "Chrome >= 20",
+    "Firefox >= 24",
+    "Explorer >= 9",
+    "iOS >= 6",
+    "Opera >= 12",
+    "Safari >= 6"
+  ];
+
   return {
-    serve: {
-      options: {
-        processors: [
-          require('pixrem')(),
-          require('autoprefixer')({browsers: 'last 2 versions'})
-        ],
-        map: true
-      },
-      src: '<%= pathTo.cssSrc %>'
-    },
     build: {
       options: {
         processors: [
           require('pixrem')(),
-          require('autoprefixer')({browsers: 'last 2 versions'}),
-          require('cssnano')()
+          require('autoprefixer')({browsers: browsers})
         ],
-        map: false
+        map: true
       },
       src: '<%= pathTo.cssSrc %>'
     }

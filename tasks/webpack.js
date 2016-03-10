@@ -10,8 +10,7 @@ module.exports = function () {
       output: {
         path: '<%= pathTo.jsDist %>',
         library: 'Paginatify',
-        libraryTarget: 'umd',
-        umdNamedDefine: true
+        libraryTarget: 'umd'
       },
       externals: [
         {
