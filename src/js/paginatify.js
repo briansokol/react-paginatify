@@ -175,4 +175,4 @@ Paginatify.defaultProps = {
   truncateNever: false
 };
 
-export default Paginatify;
+module.exports = Paginatify;
