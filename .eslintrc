@@ -1,27 +1,25 @@
 {
-  "rules": {
-    "indent": [2, 2, {"SwitchCase": 1}],
-    "quotes": [2, "single"],
-    "linebreak-style": [2, "unix"],
-    "semi": [2, "always"],
-    "comma-style": [2, "last"],
-    "no-console": 0
-  },
   "env": {
     "browser": true,
     "node": true,
-    "es6": true,
-    "jquery": true
+    "es6": true
   },
-  "extends": "eslint:recommended",
-  "ecmaFeatures": {
-    "jsx": true,
-    "experimentalObjectRestSpread": true,
-    "arrowFunctions": true,
-    "classes": true
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
-  "parser": "babel-eslint"
+  "plugins": ["react"],
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "max-len": 0,
+    "new-cap": 0,
+    "radix": [2, "as-needed"],
+    "react/jsx-closing-bracket-location": [2, "after-props"],
+    "react/jsx-no-bind": 1,
+  }
 }
