@@ -19,11 +19,12 @@ class Paginatify extends React.Component {
 
   render() {
     return (
-      <div className="paginatify">
+      <div className={cx('paginatify', this.props.className)}
+           id={this.props.id}>
 
         {
-          this.props.pages > 1 ?
-            this.getPreviousLink()
+          this.props.pages > 1
+            ? this.getPreviousLink()
             : null
         }
 
@@ -32,8 +33,8 @@ class Paginatify extends React.Component {
         }
 
         {
-          this.props.pages > 1 ?
-            this.getNextLink()
+          this.props.pages > 1
+            ? this.getNextLink()
             : null
         }
 
@@ -61,7 +62,8 @@ class Paginatify extends React.Component {
     }
 
     // if Total less than 2(Inner + Outer) + 5 AND NOT truncate short
-    if (this.props.truncateNever || (this.props.pages < 2 * (this.props.innerPadding + this.props.outerPadding) + 5 && !this.props.truncateShort)) {
+    if (this.props.truncateNever ||
+        (this.props.pages < 2 * (this.props.innerPadding + this.props.outerPadding) + 5 && !this.props.truncateShort)) {
       // output 1 to Total
       for (let i = 1; i <= this.props.pages; i++) {
         output.push(this.getLinkToPage(i));
@@ -152,6 +154,8 @@ class Paginatify extends React.Component {
 Paginatify.propTypes = {
   page: React.PropTypes.number.isRequired,
   pages: React.PropTypes.number.isRequired,
+  id: React.PropTypes.string,
+  className: React.PropTypes.string,
   onChange: React.PropTypes.func,
   innerPadding: React.PropTypes.number,
   outerPadding: React.PropTypes.number,
@@ -165,6 +169,8 @@ Paginatify.propTypes = {
 Paginatify.defaultProps = {
   page: 1,
   pages: 1,
+  id: null,
+  className: null,
   onChange: null,
   innerPadding: 1,
   outerPadding: 1,

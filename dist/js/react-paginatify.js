@@ -101,7 +101,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'paginatify' },
+	        { className: (0, _classnames2.default)('paginatify', this.props.className),
+	          id: this.props.id },
 	        this.props.pages > 1 ? this.getPreviousLink() : null,
 	        this.getPageLinks(),
 	        this.props.pages > 1 ? this.getNextLink() : null
@@ -234,6 +235,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Paginatify.propTypes = {
 	  page: _react2.default.PropTypes.number.isRequired,
 	  pages: _react2.default.PropTypes.number.isRequired,
+	  id: _react2.default.PropTypes.string,
+	  className: _react2.default.PropTypes.string,
 	  onChange: _react2.default.PropTypes.func,
 	  innerPadding: _react2.default.PropTypes.number,
 	  outerPadding: _react2.default.PropTypes.number,
@@ -247,6 +250,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Paginatify.defaultProps = {
 	  page: 1,
 	  pages: 1,
+	  id: null,
+	  className: null,
 	  onChange: null,
 	  innerPadding: 1,
 	  outerPadding: 1,
