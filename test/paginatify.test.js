@@ -160,7 +160,6 @@ describe('Paginatify', function() {
 
     it('should make that page active', function() {
       const pagination = ReactDOM.findDOMNode(paginatify);
-      console.log(pagination.querySelector('.paginatify__link--page'));
       TestUtils.Simulate.click(pagination.querySelector('.paginatify__link--page'));
       expect(pagination.children[1].classList.contains('paginatify__link--current')).toBeTruthy();
     });
