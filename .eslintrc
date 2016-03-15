@@ -20,6 +20,6 @@
     "new-cap": 0,
     "radix": [2, "as-needed"],
     "react/jsx-closing-bracket-location": [2, "after-props"],
-    "react/jsx-no-bind": 1,
+    "react/jsx-no-bind": 1
   }
 }

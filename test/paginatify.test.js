@@ -11,8 +11,8 @@ describe('Paginatify', function() {
 
   describe('In general', function() {
 
-    let paginatify = TestUtils.renderIntoDocument(
-      <Paginatify page={1} pages={5} />
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={5}/>
     );
 
     it('should render a paginatify component', function() {
@@ -20,7 +20,7 @@ describe('Paginatify', function() {
     });
 
     it('should should contain at least one page link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
       expect(links.length).toBeGreaterThan(0);
     });
 
@@ -28,22 +28,22 @@ describe('Paginatify', function() {
 
   describe('With one page', function() {
 
-    let paginatify = TestUtils.renderIntoDocument(
-      <Paginatify page={1} pages={1} />
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={1}/>
     );
 
     it('should should contain only one page link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
       expect(links.length).toBe(1);
     });
 
     it('should should contain no previous link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--previous');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--previous');
       expect(links.length).toBe(0);
     });
 
     it('should should contain no next link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
       expect(links.length).toBe(0);
     });
 
@@ -51,22 +51,22 @@ describe('Paginatify', function() {
 
   describe('With more than one page', function() {
 
-    let paginatify = TestUtils.renderIntoDocument(
-      <Paginatify page={1} pages={2} />
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={2}/>
     );
 
     it('should should contain only one page link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
       expect(links.length).toBe(2);
     });
 
     it('should should contain a previous link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--previous');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--previous');
       expect(links.length).toBe(1);
     });
 
     it('should should contain a next link', function() {
-      let links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
       expect(links.length).toBe(1);
     });
 
@@ -74,7 +74,7 @@ describe('Paginatify', function() {
 
   describe('Given props', function() {
 
-    let tests = [
+    const tests = [
       {
         props: {page: 1, pages: 0},
         expect: []
@@ -110,20 +110,59 @@ describe('Paginatify', function() {
 
     tests.forEach(function(test) {
       describe(JSON.stringify(test.props), function() {
-        let paginatify = TestUtils.renderIntoDocument(
+        const paginatify = TestUtils.renderIntoDocument(
           <Paginatify {...test.props} />
         );
 
         it('should produce pagination like ' + JSON.stringify(test.expect), function() {
-          let links = ReactDOM.findDOMNode(paginatify).children;
-          let output = [];
+          const links  = ReactDOM.findDOMNode(paginatify).children;
+          const output = [];
           test.expect.forEach(function(value, idx) {
             output.push(links[idx].textContent);
             expect(links[idx].textContent).toEqual(value);
           });
-          //console.log(JSON.stringify(test.props), JSON.stringify(test.expect), JSON.stringify(output));
         });
       });
+    });
+  });
+
+  describe('When clicking next', function() {
+
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={5}/>
+    );
+
+    it('should make the second page active', function() {
+      const pagination = ReactDOM.findDOMNode(paginatify);
+      TestUtils.Simulate.click(pagination.querySelector('.paginatify__link--next'));
+      expect(pagination.children[2].classList.contains('paginatify__link--current')).toBeTruthy();
+    });
+  });
+
+  describe('When clicking previous', function() {
+
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={5} pages={5}/>
+    );
+
+    it('should make the second to last page active', function() {
+      const pagination = ReactDOM.findDOMNode(paginatify);
+      TestUtils.Simulate.click(pagination.querySelector('.paginatify__link--previous'));
+      expect(pagination.children[4].classList.contains('paginatify__link--current')).toBeTruthy();
+    });
+  });
+
+  describe('When clicking a specific page', function() {
+
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={5} pages={5}/>
+    );
+
+    it('should make that page active', function() {
+      const pagination = ReactDOM.findDOMNode(paginatify);
+      console.log(pagination.querySelector('.paginatify__link--page'));
+      TestUtils.Simulate.click(pagination.querySelector('.paginatify__link--page'));
+      expect(pagination.children[1].classList.contains('paginatify__link--current')).toBeTruthy();
     });
   });
 
