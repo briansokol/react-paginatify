@@ -21,6 +21,7 @@ module.exports = function(grunt) {
   pathTo.jsDist     = path.join(pathTo.dist, 'js');
   pathTo.jsLib      = path.join(pathTo.lib, 'js');
   pathTo.jsLibExit  = path.join(pathTo.jsLib, 'react-paginatify.js');
+  pathTo.test       = path.join(pathTo.root, 'test');
 
   var tasks = require('load-grunt-configs')(grunt, {
     config: {

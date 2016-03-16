@@ -97,17 +97,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'paginatify' },
-	        this.props.pages > 1 ? this.getPreviousLink() : null,
-	        this.getPageLinks(),
-	        this.props.pages > 1 ? this.getNextLink() : null
-	      );
-	    }
-	  }, {
 	    key: 'setPage',
 	    value: function setPage(newPage, button, e) {
 	      e.preventDefault();
@@ -185,7 +174,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function getPreviousLink() {
 	      return _react2.default.createElement(
 	        'a',
-	        { href: '#',
+	        {
+	          href: '#',
 	          key: 'P',
 	          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
 	          onClick: this.state.page !== 1 ? this.setPage.bind(this, this.state.page - 1, 'previous') : null },
@@ -197,7 +187,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function getNextLink() {
 	      return _react2.default.createElement(
 	        'a',
-	        { href: '#',
+	        {
+	          href: '#',
 	          key: 'N',
 	          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
 	          onClick: this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1, 'next') : null },
@@ -209,7 +200,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function getLinkToPage(toPage) {
 	      return _react2.default.createElement(
 	        'a',
-	        { href: '#',
+	        {
+	          href: '#',
 	          key: toPage,
 	          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
 	          onClick: toPage !== this.state.page ? this.setPage.bind(this, toPage, 'page') : null },
@@ -221,9 +213,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function getTruncator(key) {
 	      return _react2.default.createElement(
 	        'span',
-	        { className: 'paginatify__truncation',
+	        {
+	          className: 'paginatify__truncation',
 	          key: 'T' + key },
 	        this.props.truncateChar
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        {
+	          className: (0, _classnames2.default)('paginatify', this.props.className),
+	          id: this.props.id },
+	        this.props.pages > 1 ? this.getPreviousLink() : null,
+	        this.getPageLinks(),
+	        this.props.pages > 1 ? this.getNextLink() : null
 	      );
 	    }
 	  }]);
@@ -234,6 +240,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Paginatify.propTypes = {
 	  page: _react2.default.PropTypes.number.isRequired,
 	  pages: _react2.default.PropTypes.number.isRequired,
+	  id: _react2.default.PropTypes.string,
+	  className: _react2.default.PropTypes.string,
 	  onChange: _react2.default.PropTypes.func,
 	  innerPadding: _react2.default.PropTypes.number,
 	  outerPadding: _react2.default.PropTypes.number,
@@ -247,6 +255,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	Paginatify.defaultProps = {
 	  page: 1,
 	  pages: 1,
+	  id: null,
+	  className: null,
 	  onChange: null,
 	  innerPadding: 1,
 	  outerPadding: 1,

@@ -29,6 +29,16 @@ The initial current page. Internally, Paginatify will keep track of the current 
 
 The total number of pages, inclusive.
 
+### className
+**String**, Default: **null**
+
+This class will be added to the main surrounding *div* alongside the `Paginatify` class.
+
+### id
+**String**, Default: **null**
+
+This class will be added to the main surrounding *div*.
+
 ### onChange
 **Function**, Default: **null**
 
