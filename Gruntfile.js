@@ -1,27 +1,27 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   'use strict';
 
   var path = require('path');
   require('load-grunt-tasks')(grunt);
 
-  var pathTo       = {};
-  pathTo.dist      = path.join(__dirname, 'dist');
-  pathTo.lib       = path.join(__dirname, 'lib');
-  pathTo.src       = path.join(__dirname, 'src');
-  pathTo.cssSrc    = path.join(pathTo.dist, 'css', '*');
-  pathTo.cssDist   = path.join(pathTo.dist, 'css');
-  pathTo.cssLib    = path.join(pathTo.lib, 'css');
-  pathTo.cssExit   = path.join(pathTo.cssDist, 'react-paginatify.css');
-  pathTo.sassSrc   = path.join(pathTo.src, 'scss', '**', '*.scss');
-  pathTo.sassEntry = path.join(pathTo.src, 'scss', 'paginatify.scss');
-  pathTo.sassDist  = path.join(pathTo.cssDist);
-  pathTo.sassLib   = path.join(pathTo.cssLib);
-  pathTo.jsSrc     = path.join(pathTo.src, 'js', '**', '*.js');
-  pathTo.jsEntry   = path.join(pathTo.src, 'js', 'paginatify.js');
-  pathTo.jsTest    = path.join(pathTo.src, 'test', '**', '*.test.js');
-  pathTo.jsDist    = path.join(pathTo.dist, 'js');
-  pathTo.jsLib     = path.join(pathTo.lib, 'js');
-  pathTo.jsLibExit = path.join(pathTo.jsLib, 'react-paginatify.js');
+  var pathTo        = {};
+  pathTo.root       = path.join(__dirname);
+  pathTo.dist       = path.join(__dirname, 'dist');
+  pathTo.lib        = path.join(__dirname, 'lib');
+  pathTo.src        = path.join(__dirname, 'src');
+  pathTo.cssSrc     = path.join(pathTo.dist, 'css', '*');
+  pathTo.cssDistRel = path.join('dist', 'css');
+  pathTo.cssDist    = path.join(pathTo.root, pathTo.cssDistRel);
+  pathTo.sassSrcDir = path.join(pathTo.src, 'scss');
+  pathTo.sassSrc    = path.join('**', '*.scss');
+  pathTo.sassDist   = path.join(pathTo.cssDistRel);
+  pathTo.jsSrc      = path.join(pathTo.src, 'js', '**', '*.js');
+  pathTo.jsEntry    = path.join(pathTo.src, 'js', 'paginatify.js');
+  pathTo.jsTest     = path.join(pathTo.src, 'test', '**', '*.test.js');
+  pathTo.jsDist     = path.join(pathTo.dist, 'js');
+  pathTo.jsLib      = path.join(pathTo.lib, 'js');
+  pathTo.jsLibExit  = path.join(pathTo.jsLib, 'react-paginatify.js');
+  pathTo.test       = path.join(pathTo.root, 'test');
 
   var tasks = require('load-grunt-configs')(grunt, {
     config: {
@@ -33,11 +33,9 @@ module.exports = function (grunt) {
 
   grunt.initConfig(tasks);
 
-  grunt.registerTask('serve', [/*'clean',  'postcss:serve',*/ 'eslint', 'babel', 'webpack:serve', 'watch']);
+  grunt.registerTask('dev', ['sass', 'postcss', 'eslint', 'babel', 'webpack:serve', 'watch']);
 
-  grunt.registerTask('build', [/*'clean',  'postcss',*/ 'babel', 'webpack']);
+  grunt.registerTask('build', ['sass', 'postcss', 'eslint', 'babel', 'webpack']);
 
-  grunt.registerTask('publish', ['eslint', /*'clean',  'postcss',*/ 'babel', 'webpack']);
-
-  grunt.registerTask('default', ['serve']);
+  grunt.registerTask('default', ['dev']);
 };

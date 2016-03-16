@@ -9,7 +9,7 @@ module.exports = function () {
       entry: '<%= pathTo.jsEntry %>',
       output: {
         path: '<%= pathTo.jsDist %>',
-        library: 'react-paginatify',
+        library: 'Paginatify',
         libraryTarget: 'umd'
       },
       externals: [
@@ -52,9 +52,9 @@ module.exports = function () {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
           compress: {
-            warnings: false
-          },
-          screwIE8: true
+            warnings: false,
+            screw_ie8: true
+          }
         })
       ]
     },
