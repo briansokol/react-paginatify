@@ -33,9 +33,9 @@ module.exports = function(grunt) {
 
   grunt.initConfig(tasks);
 
-  grunt.registerTask('dev', ['sass', 'postcss', 'eslint', 'babel', 'webpack:serve', 'watch']);
+  grunt.registerTask('dev', ['clean', 'sass', 'postcss', 'eslint', 'babel', 'webpack:serve', 'watch']);
 
-  grunt.registerTask('build', ['sass', 'postcss', 'eslint', 'babel', 'webpack']);
+  grunt.registerTask('build', ['clean', 'sass', 'postcss', 'eslint', 'babel', 'webpack']);
 
   grunt.registerTask('default', ['dev']);
 };

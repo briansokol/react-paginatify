@@ -3,11 +3,39 @@ import cx from 'classnames';
 
 class Paginatify extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.props = props;
-    this.state = { page: props.page };
-  }
+  static propTypes = {
+    page: React.PropTypes.number.isRequired,
+    pages: React.PropTypes.number.isRequired,
+    id: React.PropTypes.string,
+    className: React.PropTypes.string,
+    onChange: React.PropTypes.func,
+    innerPadding: React.PropTypes.number,
+    outerPadding: React.PropTypes.number,
+    nextLabel: React.PropTypes.string,
+    prevLabel: React.PropTypes.string,
+    truncateChar: React.PropTypes.string,
+    truncateShort: React.PropTypes.bool,
+    truncateNever: React.PropTypes.bool
+  };
+
+  static defaultProps = {
+    page: 1,
+    pages: 1,
+    id: null,
+    className: null,
+    onChange: null,
+    innerPadding: 1,
+    outerPadding: 1,
+    nextLabel: '>',
+    prevLabel: '<',
+    truncateChar: '…',
+    truncateShort: false,
+    truncateNever: false
+  };
+
+  state = {
+    page: this.props.page
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.page !== this.state.page) {
@@ -162,35 +190,5 @@ class Paginatify extends React.Component {
     );
   }
 }
-
-Paginatify.propTypes = {
-  page: React.PropTypes.number.isRequired,
-  pages: React.PropTypes.number.isRequired,
-  id: React.PropTypes.string,
-  className: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  innerPadding: React.PropTypes.number,
-  outerPadding: React.PropTypes.number,
-  nextLabel: React.PropTypes.string,
-  prevLabel: React.PropTypes.string,
-  truncateChar: React.PropTypes.string,
-  truncateShort: React.PropTypes.bool,
-  truncateNever: React.PropTypes.bool
-};
-
-Paginatify.defaultProps = {
-  page: 1,
-  pages: 1,
-  id: null,
-  className: null,
-  onChange: null,
-  innerPadding: 1,
-  outerPadding: 1,
-  nextLabel: '>',
-  prevLabel: '<',
-  truncateChar: '…',
-  truncateShort: false,
-  truncateNever: false
-};
 
 module.exports = Paginatify;
