@@ -15,7 +15,7 @@ In this way, the current page can either be tracked internally through state, or
 
 This library is pre-compiled as a [UMD](https://github.com/umdjs/umd) module. When loaded using `<script>` tags, it creates a global variable called `Paginatify`.
 
-**Paginatify must be used with React 0.13 or higher.**
+**Paginatify must be used with React 0.13 or higher, including 15.0.**
 
 ## Props
 
