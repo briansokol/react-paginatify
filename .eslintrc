@@ -1,10 +1,10 @@
 {
   "env": {
     "browser": true,
-    "node": true,
     "es6": true
   },
   "extends": "airbnb",
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -12,14 +12,11 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "plugins": ["react"],
-  "parser": "babel-eslint",
   "rules": {
     "comma-dangle": [2, "never"],
     "max-len": 0,
     "new-cap": 0,
-    "radix": [2, "as-needed"],
-    "react/jsx-closing-bracket-location": [2, "after-props"],
+    "react/jsx-filename-extension": 0,
     "react/jsx-no-bind": 1
   }
 }

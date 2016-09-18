@@ -1,11 +1,8 @@
-jest.dontMock('../src/js/paginatify');
-jest.dontMock('classnames');
-
 import ReactDOM from 'react-dom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-const Paginatify = require('../src/js/paginatify');
+import Paginatify from '../esm/react-paginatify';
 
 describe('Paginatify', function() {
 

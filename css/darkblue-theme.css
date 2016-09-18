@@ -1,0 +1,51 @@
+.paginatify {
+  margin: 1rem;
+  font-size: 1.1rem;
+}
+
+.paginatify__link,
+.paginatify__truncation {
+  display: inline-block;
+  text-align: center;
+  line-height: 3rem;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  background: #222222;
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.paginatify__link:hover {
+  background: #0074D9;
+}
+
+.paginatify__truncation {
+  color: #bbbbbb;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.paginatify__link--current {
+  background: #0074D9;
+  color: white;
+  text-decoration: none;
+}
+
+.paginatify__link--current:hover {
+  background: #279aff;
+}
+
+.paginatify__link--disabled {
+  color: #888888;
+  text-decoration: none;
+}
+
+.paginatify__link--next {
+  border-left: 1px solid #bbbbbb;
+}
+
+.paginatify__link--previous {
+  border-right: 1px solid #bbbbbb;
+}

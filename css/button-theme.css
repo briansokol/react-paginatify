@@ -1,0 +1,46 @@
+/* Button styles based on http://codepen.io/LimpingLlama/pen/JXYZRo */
+.paginatify {
+  margin: 1rem;
+}
+
+.paginatify__link {
+  transition: all 0.2s;
+  display: inline-block;
+  position: relative;
+  top: 0;
+  background: #eeeeee;
+  color: black;
+  padding: 0.5rem 1rem;
+  margin: 0.4rem 0.2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.4rem 0 0 #e1e1e1, 0 0 0.5rem 0 #bbbbbb;
+  text-decoration: none;
+}
+
+.paginatify__link:active {
+  top: 0.3rem;
+  box-shadow: 0 0.1rem 0 0 #e1e1e1;
+}
+
+.paginatify__truncation {
+  color: #666666;
+  font-weight: bold;
+  margin: 0.4rem 0.4rem;
+}
+
+.paginatify__link--current {
+  background: #f012be;
+  color: white;
+  box-shadow: 0 0.4rem 0 0 #db0ead, 0 0 0.5rem 0 #bbbbbb;
+}
+
+.paginatify__link--current:active {
+  box-shadow: 0 0.1rem 0 0 #db0ead;
+}
+
+.paginatify__link--disabled {
+  top: 0.3rem;
+  color: #aaaaaa;
+  background: #eeeeee;
+  box-shadow: 0 0.1rem 0 0 #e1e1e1;
+}
