@@ -23,6 +23,38 @@ describe('Paginatify', function() {
 
   });
 
+  describe('when props change', () => {
+
+    const node = document.createElement('div');
+    const paginatify = ReactDOM.render(<Paginatify page={1} />, node);
+
+    it('should update props when they change', () => {
+      expect(paginatify.props.page).toBe(1);
+      ReactDOM.render(<Paginatify page={2} />, node);
+      expect(paginatify.props.page).toBe(2);
+    });
+
+  });
+
+  describe('when a button with a callback is clicked', () => {
+
+    const callback = (newPage, oldPage, button) => {
+      expect(newPage).toBe(2);
+      expect(oldPage).toBe(1);
+      expect(button).toBe('next');
+    };
+
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={5} onChange={callback} />
+    );
+
+    it('should call the callback', () => {
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
+      TestUtils.Simulate.click(links[0]);
+    });
+
+  });
+
   describe('With one page', function() {
 
     const paginatify = TestUtils.renderIntoDocument(

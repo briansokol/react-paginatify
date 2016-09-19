@@ -66,9 +66,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(2);
+	var _cx = __webpack_require__(2);
 	
-	var _classnames2 = _interopRequireDefault(_classnames);
+	var _cx2 = _interopRequireDefault(_cx);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'button',
 	        {
 	          key: 'P',
-	          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
+	          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
 	          onClick: this.state.page !== 1 ? this.setPage.bind(this, this.state.page - 1, 'previous') : null
 	        },
 	        this.props.prevLabel
@@ -199,7 +199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'button',
 	        {
 	          key: 'N',
-	          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
+	          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
 	          onClick: this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1, 'next') : null
 	        },
 	        this.props.nextLabel
@@ -212,7 +212,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'button',
 	        {
 	          key: toPage,
-	          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
+	          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
 	          onClick: toPage !== this.state.page ? this.setPage.bind(this, toPage, 'page') : null
 	        },
 	        toPage
@@ -236,7 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _react2.default.createElement(
 	        'div',
 	        {
-	          className: (0, _classnames2.default)('paginatify', this.props.className),
+	          className: (0, _cx2.default)('paginatify', this.props.className),
 	          id: this.props.id
 	        },
 	        this.props.pages > 1 ? this.getPreviousLink() : null,
@@ -287,57 +287,36 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2016 Jed Watson.
-	  Licensed under the MIT License (MIT), see
-	  http://jedwatson.github.io/classnames
-	*/
-	/* global define */
+	'use strict';
 	
-	(function () {
-		'use strict';
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-		var hasOwn = {}.hasOwnProperty;
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
-		function classNames () {
-			var classes = [];
+	exports.default = cx;
+	function cx() {
+	  var appliedClasses = [];
 	
-			for (var i = 0; i < arguments.length; i++) {
-				var arg = arguments[i];
-				if (!arg) continue;
+	  for (var _len = arguments.length, classes = Array(_len), _key = 0; _key < _len; _key++) {
+	    classes[_key] = arguments[_key];
+	  }
 	
-				var argType = typeof arg;
+	  classes.forEach(function (className) {
+	    if (typeof className === 'string') {
+	      appliedClasses.push(className);
+	    } else if (className !== null && (typeof className === 'undefined' ? 'undefined' : _typeof(className)) === 'object' && Object.prototype.toString.call(className) !== '[object Array]') {
+	      appliedClasses = appliedClasses.concat(Object.keys(className).filter(function (key) {
+	        return className[key];
+	      }));
+	    }
+	  });
 	
-				if (argType === 'string' || argType === 'number') {
-					classes.push(arg);
-				} else if (Array.isArray(arg)) {
-					classes.push(classNames.apply(null, arg));
-				} else if (argType === 'object') {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				}
-			}
-	
-			return classes.join(' ');
-		}
-	
-		if (typeof module !== 'undefined' && module.exports) {
-			module.exports = classNames;
-		} else if (true) {
-			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return classNames;
-			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else {
-			window.classNames = classNames;
-		}
-	}());
-
+	  return appliedClasses.join(' ');
+	}
 
 /***/ }
 /******/ ])
