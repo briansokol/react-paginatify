@@ -13,9 +13,16 @@ Simple, configurable, truncatable pagination for React.
 
 In this way, the current page can either be tracked internally through state, or externally by modifying the component's props when the current page changes.
 
-This library is pre-compiled as a [UMD](https://github.com/umdjs/umd) module. When loaded using `<script>` tags, it creates a global variable called `Paginatify`.
+This library is provided in several forms:
 
-**Paginatify must be used with React 0.13 or higher, including 15.0.**
+- As an ES2015 module in the `esm` directory. 
+  `import Paginatify from 'react-paginatify/esm/react-paginatify';`
+- Transpiled to CommonJS/ES5 in the `src` directory. This is the default import.
+  `import Paginatify from 'react-paginatify';`
+- Pre-compiled as a [UMD](https://github.com/umdjs/umd) module. When loaded using `<script>` tags, it creates a global variable called `Paginatify`.
+  `<script src="react-paginatify.min.js"></script>`
+
+**Paginatify must be used with React 0.13 or higher, including 15.**
 
 ## Props
 

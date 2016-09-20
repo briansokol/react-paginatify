@@ -10,9 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = require('classnames');
+var _cx = require('./cx');
 
-var _classnames2 = _interopRequireDefault(_classnames);
+var _cx2 = _interopRequireDefault(_cx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -130,7 +130,7 @@ var Paginatify = function (_React$Component) {
         'button',
         {
           key: 'P',
-          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
+          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
           onClick: this.state.page !== 1 ? this.setPage.bind(this, this.state.page - 1, 'previous') : null
         },
         this.props.prevLabel
@@ -143,7 +143,7 @@ var Paginatify = function (_React$Component) {
         'button',
         {
           key: 'N',
-          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
+          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
           onClick: this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1, 'next') : null
         },
         this.props.nextLabel
@@ -156,7 +156,7 @@ var Paginatify = function (_React$Component) {
         'button',
         {
           key: toPage,
-          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
+          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
           onClick: toPage !== this.state.page ? this.setPage.bind(this, toPage, 'page') : null
         },
         toPage
@@ -180,7 +180,7 @@ var Paginatify = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         {
-          className: (0, _classnames2.default)('paginatify', this.props.className),
+          className: (0, _cx2.default)('paginatify', this.props.className),
           id: this.props.id
         },
         this.props.pages > 1 ? this.getPreviousLink() : null,
@@ -222,5 +222,4 @@ Paginatify.defaultProps = {
   truncateNever: false
 };
 exports.default = Paginatify;
-
 //# sourceMappingURL=react-paginatify.js.map
