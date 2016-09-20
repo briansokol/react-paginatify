@@ -2,12 +2,16 @@ const webpack = require('webpack');
 const path    = require('path');
 const pkg     = require('./package.json');
 
-const DEV    = process.env.NODE_ENV === 'develop';
-const MINIFY = process.env.NODE_ENV === 'minify';
+const PROD = process.env.NODE_ENV === 'production';
 
-const plugins = !MINIFY
+let plugins = !PROD
   ? []
   : [
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    }
+  }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
@@ -16,7 +20,7 @@ const plugins = !MINIFY
   })
 ];
 
-const preLoaders = !DEV
+const preLoaders = PROD
   ? []
   : [
   {
@@ -29,12 +33,14 @@ const preLoaders = !DEV
 
 module.exports = {
 
-  devtool: 'source-map',
+  devtool: PROD ? '' : 'source-map',
+
+  cache: true,
 
   entry: path.resolve(__dirname, 'esm/react-paginatify'),
 
   output: {
-    filename: pkg.name + (MINIFY ? '.min' : '') + '.js',
+    filename: pkg.name + (PROD ? '.min' : '') + '.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'Paginatify',
     libraryTarget: 'umd'
@@ -56,7 +62,7 @@ module.exports = {
   resolve: {
     root: [ path.resolve(__dirname, 'esm') ],
     moduleDirectories: [ 'node_modules' ],
-    extensions: [ '.js' ]
+    extensions: [ '', '.js' ]
   },
 
   module: {

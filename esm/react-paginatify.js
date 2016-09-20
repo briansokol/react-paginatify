@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from './cx';
 
-export default class Paginatify extends React.Component {
+class Paginatify extends React.Component {
 
   static propTypes = {
     page: React.PropTypes.number.isRequired,
@@ -33,9 +33,12 @@ export default class Paginatify extends React.Component {
     truncateNever: false
   };
 
-  state = {
-    page: this.props.page
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: props.page
+    };
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.page !== this.state.page) {
@@ -193,3 +196,5 @@ export default class Paginatify extends React.Component {
     );
   }
 }
+
+module.exports = Paginatify;

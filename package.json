@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run babel && npm run transpile && npm run minify && npm run sass",
     "babel": "babel ./esm --out-dir ./src -s",
     "transpile": "webpack",
-    "minify": "NODE_ENV=minify webpack",
+    "minify": "NODE_ENV=production webpack",
     "clean": "rimraf dist/* && rimraf src/* && rimraf css/*",
     "sass": "node-sass --output-style expanded -o ./css ./scss",
     "test": "rimraf coverage/* && npm run lint && npm run jest",
