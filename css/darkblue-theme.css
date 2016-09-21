@@ -5,6 +5,7 @@
 
 .paginatify__link,
 .paginatify__truncation {
+  cursor: pointer;
   display: inline-block;
   text-align: center;
   line-height: 3rem;
@@ -15,6 +16,8 @@
   color: white;
   text-decoration: none;
   font-weight: 300;
+  border: none;
+  padding: 0;
 }
 
 .paginatify__link:hover {
@@ -22,6 +25,7 @@
 }
 
 .paginatify__truncation {
+  cursor: default;
   color: #bbbbbb;
   font-weight: bold;
   letter-spacing: 0.1rem;
@@ -38,8 +42,13 @@
 }
 
 .paginatify__link--disabled {
+  cursor: default;
   color: #888888;
   text-decoration: none;
+}
+
+.paginatify__link--disabled:hover {
+  background: #222222;
 }
 
 .paginatify__link--next {

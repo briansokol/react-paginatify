@@ -11,6 +11,7 @@ $disabled-color: #888888;
 
 .paginatify__link,
 .paginatify__truncation {
+  cursor: pointer;
   display: inline-block;
   text-align: center;
   line-height: 3rem;
@@ -21,6 +22,8 @@ $disabled-color: #888888;
   color: white;
   text-decoration: none;
   font-weight: 300;
+  border: none;
+  padding: 0;
 }
 
 .paginatify__link:hover {
@@ -28,6 +31,7 @@ $disabled-color: #888888;
 }
 
 .paginatify__truncation {
+  cursor: default;
   color: $doodad-color;
   font-weight: bold;
   letter-spacing: 0.1rem;
@@ -44,8 +48,13 @@ $disabled-color: #888888;
 }
 
 .paginatify__link--disabled {
+  cursor: default;
   color: $disabled-color;
   text-decoration: none;
+
+  &:hover {
+    background: $bg-color;
+  }
 }
 
 .paginatify__link--next {
