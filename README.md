@@ -13,9 +13,27 @@ Simple, configurable, truncatable pagination for React.
 
 In this way, the current page can either be tracked internally through state, or externally by modifying the component's props when the current page changes.
 
-This library is pre-compiled as a [UMD](https://github.com/umdjs/umd) module. When loaded using `<script>` tags, it creates a global variable called `Paginatify`.
+This library is provided in several forms:
 
-**Paginatify must be used with React 0.13 or higher, including 15.0.**
+- As an ES2015 module in the `esm` directory.
+
+    ```javascript
+    import Paginatify from 'react-paginatify/esm/react-paginatify';
+    ```
+    
+- Transpiled to CommonJS/ES5 in the `src` directory. This is the default import.
+
+    ```javascript
+    import Paginatify from 'react-paginatify';
+    ```
+    
+- Pre-compiled as a [UMD](https://github.com/umdjs/umd) module. When loaded using `<script>` tags, it creates a global variable called `Paginatify`.
+  
+    ```javascript
+    <script src="react-paginatify.min.js"></script>
+    ```
+
+**Paginatify must be used with React 0.13 or higher, including 15.**
 
 ## Props
 
@@ -86,30 +104,30 @@ If true, truncation will never be applied. This supersedes **truncateShort**.
 
 ## Styling
 
-There is no styling applied by default. Custom class names are currently not implemented, but several classes are provided on the pagination elements to allow for styling.
+There is no styling applied by default. You may provide a custom class name for the parent element, and several classes are provided on the child elements to allow for styling.
 
-Some example themes are included in the **dist/css** directory, with SCSS versions found in **src/scss**. You can view and play around with them on [Codepen](http://codepen.io/collection/APoJRQ/).
+Some example themes are included in the **css** directory, with SCSS versions found in **scss**. You can view and play around with them on [Codepen](http://codepen.io/collection/APoJRQ/).
 
-### `paginatify`
-The class of the surrounding *div* element.
+### paginatify
+The class of the surrounding parent *div* element.
 
-### `paginatify__link`
+### paginatify__link
 Applied to every *page* link, as well as the *next* and *previous* links. These elements are *a* tags. These are several types of links:
 
-#### `paginatify__link--page`
+#### paginatify__link--page
 A direct link to a page.
 
-#### `paginatify__link--previous`
+#### paginatify__link--previous
 A link to the previous page.
 
-#### `paginatify__link--next`
+#### paginatify__link--next
 A link to the next page.
 
-#### `paginatify__link--current`
+#### paginatify__link--current
 Applied to the current page. While it is still a clickable *a* tag, no action is performed when it is clicked.
 
-#### `paginatify__link--disabled`
+#### paginatify__link--disabled
 Applied to a page that is not clickable (but not the current page). This is applied to the *previous* and *next* links when the current page is the first or last page, respectively.
 
-### `paginatify__truncation`
+### paginatify__truncation
 This is the string that indicates that a truncation has occurred. These elements are *span* tags and are not clickable.

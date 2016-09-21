@@ -1,11 +1,8 @@
-jest.dontMock('../src/js/paginatify');
-jest.dontMock('classnames');
-
 import ReactDOM from 'react-dom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-const Paginatify = require('../src/js/paginatify');
+import Paginatify from '../esm/react-paginatify';
 
 describe('Paginatify', function() {
 
@@ -22,6 +19,38 @@ describe('Paginatify', function() {
     it('should should contain at least one page link', function() {
       const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--page');
       expect(links.length).toBeGreaterThan(0);
+    });
+
+  });
+
+  describe('when props change', () => {
+
+    const node = document.createElement('div');
+    const paginatify = ReactDOM.render(<Paginatify page={1} />, node);
+
+    it('should update props when they change', () => {
+      expect(paginatify.props.page).toBe(1);
+      ReactDOM.render(<Paginatify page={2} />, node);
+      expect(paginatify.props.page).toBe(2);
+    });
+
+  });
+
+  describe('when a button with a callback is clicked', () => {
+
+    const callback = (newPage, oldPage, button) => {
+      expect(newPage).toBe(2);
+      expect(oldPage).toBe(1);
+      expect(button).toBe('next');
+    };
+
+    const paginatify = TestUtils.renderIntoDocument(
+      <Paginatify page={1} pages={5} onChange={callback} />
+    );
+
+    it('should call the callback', () => {
+      const links = TestUtils.scryRenderedDOMComponentsWithClass(paginatify, 'paginatify__link--next');
+      TestUtils.Simulate.click(links[0]);
     });
 
   });

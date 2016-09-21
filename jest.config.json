@@ -1,19 +1,6 @@
 {
   "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-  "unmockedModulePathPatterns": [
-    "<rootDir>/node_modules/react",
-    "<rootDir>/node_modules/fbjs",
-    "<rootDir>/node_modules/react-dom",
-    "<rootDir>/node_modules/react-addons-test-utils"
-  ],
-  "moduleFileExtensions": ["js"],
-  "testDirectoryName": "test",
-  "testFileExtensions": [
-    "test.js"
-  ],
   "collectCoverage": true,
-  "collectCoverageOnlyFrom": {
-    "<rootDir>/src/js/paginatify.js": true
-  },
+  "coverageDirectory": "./coverage",
   "verbose": true
 }

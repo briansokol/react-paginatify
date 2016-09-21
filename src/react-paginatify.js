@@ -6,9 +6,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = require('classnames');
+var _cx = require('./cx');
 
-var _classnames2 = _interopRequireDefault(_classnames);
+var _cx2 = _interopRequireDefault(_cx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21,20 +21,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Paginatify = function (_React$Component) {
   _inherits(Paginatify, _React$Component);
 
-  function Paginatify() {
-    var _Object$getPrototypeO;
-
-    var _temp, _this, _ret;
-
+  function Paginatify(props) {
     _classCallCheck(this, Paginatify);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (Paginatify.__proto__ || Object.getPrototypeOf(Paginatify)).call(this, props));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Paginatify)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
-      page: _this.props.page
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    _this.state = {
+      page: props.page
+    };
+    return _this;
   }
 
   _createClass(Paginatify, [{
@@ -70,7 +65,7 @@ var Paginatify = function (_React$Component) {
       // if Total less than 2(Inner + Outer) + 5 AND NOT truncate short
       if (this.props.truncateNever || this.props.pages < 2 * (this.props.innerPadding + this.props.outerPadding) + 5 && !this.props.truncateShort) {
         // output 1 to Total
-        for (var i = 1; i <= this.props.pages; i++) {
+        for (var i = 1; i <= this.props.pages; i += 1) {
           output.push(this.getLinkToPage(i));
         }
         return output;
@@ -79,18 +74,18 @@ var Paginatify = function (_React$Component) {
       // if Page > Inner + Outer + 2
       if (this.state.page > this.props.innerPadding + this.props.outerPadding + 2) {
         // output 1 to Outer
-        for (var _i = 1; _i <= this.props.outerPadding; _i++) {
+        for (var _i = 1; _i <= this.props.outerPadding; _i += 1) {
           output.push(this.getLinkToPage(_i));
         }
         // output ...
         output.push(this.getTruncator(1));
         // output Page - Inner to Page - 1
-        for (var _i2 = this.state.page - this.props.innerPadding; _i2 <= this.state.page - 1; _i2++) {
+        for (var _i2 = this.state.page - this.props.innerPadding; _i2 <= this.state.page - 1; _i2 += 1) {
           output.push(this.getLinkToPage(_i2));
         }
       } else {
         // output 1 to Page - 1
-        for (var _i3 = 1; _i3 <= this.state.page - 1; _i3++) {
+        for (var _i3 = 1; _i3 <= this.state.page - 1; _i3 += 1) {
           output.push(this.getLinkToPage(_i3));
         }
       }
@@ -101,18 +96,18 @@ var Paginatify = function (_React$Component) {
       // if Page < Total - (Inner + Outer + 1)
       if (this.state.page < this.props.pages - this.props.innerPadding - this.props.outerPadding - 1) {
         // output Page + 1 to Page + Inner
-        for (var _i4 = this.state.page + 1; _i4 <= this.state.page + this.props.innerPadding; _i4++) {
+        for (var _i4 = this.state.page + 1; _i4 <= this.state.page + this.props.innerPadding; _i4 += 1) {
           output.push(this.getLinkToPage(_i4));
         }
         // output ...
         output.push(this.getTruncator(2));
         // output Total - (Outer - 1) to Total
-        for (var _i5 = this.props.pages - (this.props.outerPadding - 1); _i5 <= this.props.pages; _i5++) {
+        for (var _i5 = this.props.pages - (this.props.outerPadding - 1); _i5 <= this.props.pages; _i5 += 1) {
           output.push(this.getLinkToPage(_i5));
         }
       } else {
         // output Page + 1 to Total
-        for (var _i6 = this.state.page + 1; _i6 <= this.props.pages; _i6++) {
+        for (var _i6 = this.state.page + 1; _i6 <= this.props.pages; _i6 += 1) {
           output.push(this.getLinkToPage(_i6));
         }
       }
@@ -123,12 +118,12 @@ var Paginatify = function (_React$Component) {
     key: 'getPreviousLink',
     value: function getPreviousLink() {
       return _react2.default.createElement(
-        'a',
+        'button',
         {
-          href: '#',
           key: 'P',
-          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
-          onClick: this.state.page !== 1 ? this.setPage.bind(this, this.state.page - 1, 'previous') : null },
+          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--previous', { 'paginatify__link--disabled': this.state.page === 1 }),
+          onClick: this.state.page !== 1 ? this.setPage.bind(this, this.state.page - 1, 'previous') : null
+        },
         this.props.prevLabel
       );
     }
@@ -136,12 +131,12 @@ var Paginatify = function (_React$Component) {
     key: 'getNextLink',
     value: function getNextLink() {
       return _react2.default.createElement(
-        'a',
+        'button',
         {
-          href: '#',
           key: 'N',
-          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
-          onClick: this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1, 'next') : null },
+          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--next', { 'paginatify__link--disabled': this.state.page === this.props.pages }),
+          onClick: this.state.page !== this.props.pages ? this.setPage.bind(this, this.state.page + 1, 'next') : null
+        },
         this.props.nextLabel
       );
     }
@@ -149,12 +144,12 @@ var Paginatify = function (_React$Component) {
     key: 'getLinkToPage',
     value: function getLinkToPage(toPage) {
       return _react2.default.createElement(
-        'a',
+        'button',
         {
-          href: '#',
           key: toPage,
-          className: (0, _classnames2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
-          onClick: toPage !== this.state.page ? this.setPage.bind(this, toPage, 'page') : null },
+          className: (0, _cx2.default)('paginatify__link', 'paginatify__link--page', { 'paginatify__link--current': this.state.page === toPage }),
+          onClick: toPage !== this.state.page ? this.setPage.bind(this, toPage, 'page') : null
+        },
         toPage
       );
     }
@@ -165,7 +160,8 @@ var Paginatify = function (_React$Component) {
         'span',
         {
           className: 'paginatify__truncation',
-          key: 'T' + key },
+          key: 'T' + key
+        },
         this.props.truncateChar
       );
     }
@@ -175,8 +171,9 @@ var Paginatify = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         {
-          className: (0, _classnames2.default)('paginatify', this.props.className),
-          id: this.props.id },
+          className: (0, _cx2.default)('paginatify', this.props.className),
+          id: this.props.id
+        },
         this.props.pages > 1 ? this.getPreviousLink() : null,
         this.getPageLinks(),
         this.props.pages > 1 ? this.getNextLink() : null
