@@ -1,6 +1,6 @@
 {
   "name": "react-paginatify",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Simple, configurable, truncatable pagination for React.",
   "main": "src/react-paginatify.js",
   "scripts": {
